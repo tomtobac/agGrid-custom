@@ -9,21 +9,24 @@
   }
 }
 
+// https://github.com/ag-grid/ag-grid/issues/1950
+
 $ag-icons-path: "~ag-grid-community/src/styles/ag-theme-balham/icons/";
+$icon-size: 24px;
 
 $font-family: "Arial";
-$font-size: 12px;
+$font-size: 14px;
 $border-color: #ebeced;
 
 $icon-color: #37454d;
 
-/* headers */
+// headers
 $secondary-foreground-color: #9ba2a6;
 $header-background-color: white;
-$secondary-font-size: 14px;
+$secondary-font-size: 16px;
 $secondary-font-weight: normal;
 
-/* cells */
+// cells
 $foreground-color: #37454d;
 $row-height: 29px;
 $odd-row-background-color: #f5f5f5;
@@ -38,6 +41,11 @@ $odd-row-background-color: #f5f5f5;
   line-height: 44px;
 }
 
+// TODO: doesn't work
+.ag-theme-balham .ag-cell {
+  line-height: 29px;
+}
+
 /* Remove vertical line between ths */
 .ag-theme-balham .ag-header-cell::after,
 .ag-theme-balham .ag-header-group-cell::after {
@@ -50,7 +58,13 @@ $odd-row-background-color: #f5f5f5;
 
 /* Change sort icon */
 // @see https://www.ag-grid.com/javascript-grid-icons/
-// .ag-theme-balham .ag-icon-asc,
-// .ag-theme-balham .ag-icon-desc {
-//   background: url('./arrow.svg');
-// }
+// TODO: change size of icon
+.ag-theme-balham .ag-icon-asc {
+  background-image: url('./arrow.svg');
+  transform: rotate(-90deg)
+}
+
+.ag-theme-balham .ag-icon-desc {
+  background-image: url('./arrow.svg');
+  transform: rotate(90deg)
+}

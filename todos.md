@@ -1,0 +1,7 @@
+- Custom pagination [x]
+- trivago Loading animation [x]
+- Sort handler server-side [wip]
+- Custom tooltips
+- Format value inside cells
+- Font-weight for pinned bottom row
+- Checkbox?

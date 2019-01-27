@@ -21,7 +21,8 @@ export const columns = [
     pinned: 'left',
     headerCheckboxSelection: true,
     headerCheckboxSelectionFilteredOnly: true,
-    checkboxSelection: true
+    checkboxSelection: true,
+    width: 400
   },
   {
     field: 'pid',
