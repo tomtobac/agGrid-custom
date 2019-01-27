@@ -29,7 +29,7 @@ $secondary-font-weight: normal;
 // cells
 $foreground-color: #37454d;
 $row-height: 29px;
-$odd-row-background-color: #f5f5f5;
+$odd-row-background-color: white;
 // $cell-horizontal-border: #979797;
 
 @import "~ag-grid-community/src/styles/ag-grid.scss";
@@ -67,4 +67,19 @@ $odd-row-background-color: #f5f5f5;
 .ag-theme-balham .ag-icon-desc {
   background-image: url('./arrow.svg');
   transform: rotate(90deg)
+}
+
+// Hightlight color
+.ag-row-hover {
+  /* putting in !important so it overrides the theme's styling as it hovers the row also */
+  background-color:  #f5f5f5 !important;
+}
+
+.ag-theme-balham .ag-row-selected {
+  background-color:  #e5f2f6;
+}
+
+// Remove border when selecting a cell
+.ag-theme-balham .ag-ltr .ag-cell-focus {
+  border-width: 0;
 }
