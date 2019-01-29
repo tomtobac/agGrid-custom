@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import "./App.scss";
 import { AgGridReact } from "ag-grid-react";
 import { columns, rows, total } from "./data";
-import { GridReadyEvent, GridApi, ColumnApi } from "ag-grid-community";
+import { GridReadyEvent, GridApi, ColumnApi, ValueFormatterParams } from "ag-grid-community";
 import { CustomOverlayLoading } from "./components/overlayLoading";
 import { Pagination } from "./components/pagination";
+import { CustomPinnedRow } from './components/pinnedRow';
 
 class App extends Component {
   api: GridApi | null | undefined = null;
@@ -62,9 +63,11 @@ class App extends Component {
           <AgGridReact
             columnDefs={columns}
             rowData={rowData}
-            pinnedBottomRowData={[total]}
+            pinnedBottomRowData={total}
             defaultColDef={{
-              sortable: true
+              sortable: true,
+              valueFormatter: formatValue,
+              pinnedRowCellRenderer: "customPinnedRowRenderer"
             }}
             headerHeight={44}
             pagination={true}
@@ -72,7 +75,8 @@ class App extends Component {
             rowSelection="multiple"
             onGridReady={this.onGridReady}
             frameworkComponents={{
-              customLoadingOverlay: CustomOverlayLoading
+              customLoadingOverlay: CustomOverlayLoading,
+              customPinnedRowRenderer: CustomPinnedRow
             }}
             loadingOverlayComponent="customLoadingOverlay"
           />
@@ -91,3 +95,31 @@ class App extends Component {
 }
 
 export default App;
+
+
+const formatValue = (params: ValueFormatterParams) => {
+    // Row => params.data
+    // Column => params.column.colDef
+    console.log(params);
+    const { wrapper } = params.colDef as any;
+    const { value } = params;
+    if (wrapper) {
+      if (value === undefined) {
+        return '';
+      }
+      switch (wrapper) {
+        case '€':
+          return value.toLocaleString('eu', { style: 'currency', currency: 'EUR' });
+        case '%':
+          return value.toLocaleString('eu', {
+            style: 'percent',
+            maximumSignificantDigits: 4
+          });
+        default:
+          if (!Number.isNaN(value)) {
+            return value.toLocaleString('eu');
+          }
+          return value || '';
+      }
+    }
+}

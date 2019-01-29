@@ -2,6 +2,8 @@
 - trivago Loading animation [x]
 - Sort handler server-side [wip]
 - Custom tooltips
-- Format value inside cells
-- Font-weight for pinned bottom row
+- Format value inside cells [wip ~]
+- Font-weight for pinned bottom row [x]
 - Checkbox?
+- Pinned bottom row - top border
+- line-height 1st column
